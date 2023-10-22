@@ -4,20 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    /**
-     * While on the offline page continuously check online status and
-     * redirect to index if online again. This only checks if the browser 
-     * has access to the network, not if the app is connected to the control system.
-     * That functionality is in the xpanel.js file.
-    */
-    function checkOnlineStatus() {
-      if (window.navigator.onLine) {
-        window.location.href = './index.html';
-      }
-    }
-    setInterval(checkOnlineStatus, 1000);
-  </script>
   <script src="./libs/eruda.js"></script>
   <script type="module" src="./libs/cr-com-lib.js"></script> 
   <script type="module" src="./libs/765941770a51521ed042.worker.js"></script>
