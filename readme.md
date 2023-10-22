@@ -16,8 +16,8 @@ This section describes the implementation of PWA functionality into the applicat
 ### The manifest.json
 We will first examine the [manifest.json](src/manifest.json), the manifest must contain the following fields:
 
-```json
-"name": "CH5 PWA Demo", // This is the name as seen by the user in their app list.
+```javascript
+{"name": "CH5 PWA Demo", // This is the name as seen by the user in their app list.
 "short_name": "CH5 Demo", // Shortened name of the application, should be less than 12 characters.
 "start_url": "https://server_ip/ch5-pwa-demo/entry_point.html", // This is the path to the PWA entry point, typically the index.html.
 "id": "/ch5-pwa-demo/", // This is the unique identifier for the app. This is typically based on the URL of the app on the server without the entry point.
@@ -46,7 +46,7 @@ We will first examine the [manifest.json](src/manifest.json), the manifest must 
     "sizes": "1024x593",
     "form_factor": "wide"
   }
-]
+]}
 ```
 
 ### The service worker
