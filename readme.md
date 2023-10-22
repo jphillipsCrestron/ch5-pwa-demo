@@ -74,7 +74,7 @@ const toCache = [
 ];
 ```
 
-When the user attempts to install the PWA the service worker file needs to listen for the install event and provide a way for the service worker to cache all the necessary the files:
+When the user attempts to install the PWA the service worker file needs to listen for the install event and provide a way for the service worker to cache all the necessary files:
 
 ```javascript
 // src/sw.js
