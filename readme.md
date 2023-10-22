@@ -62,7 +62,7 @@ const toCache = [
   './index.html',
   './offline.html',
   './manifest.json',
-  './assets/vite.svg',
+  './assets/vite.png',
   './assets/favicon.ico',
   './styles/app.css',
   './styles/offline.css',
