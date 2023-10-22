@@ -1,0 +1,32 @@
+{
+  "name": "CH5 PWA Demo",
+  "short_name": "CH5 Demo",
+  "start_url": "https://192.168.1.223/ch5-pwa-demo/index.html",
+  "id": "/ch5-pwa-demo/",
+  "display_override": ["window-controls-overlay","standalone"],
+  "display": "standalone",
+  "description": "CH5 PWA Demo",
+  "background-color": "#888",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "./assets/vite.png",
+      "sizes": "800x800",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+			"src": "./assets/screenshot_narrow.jpg",
+			"type": "image/jpeg",
+			"sizes": "540x720",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "./assets/screenshot_wide.jpg",
+			"type": "image/jpeg",
+			"sizes": "1024x593",
+			"form_factor": "wide"
+		}
+	]
+}

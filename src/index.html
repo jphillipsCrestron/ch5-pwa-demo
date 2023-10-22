@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    /**
+     * Listen for the browser offline event. This event only fires if the 
+     * browser/app loses connection to the network, not if the browser/app 
+     * has lost connection to the control system. That functionality is 
+     * in the xpanel.js file.
+     */
+    window.addEventListener('offline', function() {
+      window.location.href = './offline.html';
+    });
+  </script>
+
+  <!-- 
+    We need to link the manifest.json to the entry point HTML.
+    manifest.json requirements for PWA functionality are found here:
+    https://developers.google.com/web/fundamentals/web-app-manifest/
+    https://developer.mozilla.org/en-US/docs/Web/Manifest
+  -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Register the service worker before any other script -->
+  <script src="./registerSW.js"></script>
+
+  <!-- Useful tool for debugging on panel/app. Adds a virtual browser devtool -->
+  <script src="./libs/eruda.js"></script>
+
+  <!-- Linking the Crestron cr-com-lib and webxpanel + worker scripts (UMD) -->
+  <script type="module" src="./libs/cr-com-lib.js"></script> 
+  <script type="module" src="./libs/765941770a51521ed042.worker.js"></script>
+  <script type="module" src="./libs/index.js"></script>
+
+  <!-- With the Crestron libraries out of the way we can load our code -->
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./xpanel.js"></script>
+
+  <link rel="stylesheet" href="./styles/app.css">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <title>CH5 PWA Demo</title>
+</head>
+<body>
+  <div id="controlGroupWrapper">
+    <div class="controlGroup">
+      <button id="sendDigitalButton" class="btn">Toggle Digital</button>
+      <p id="currentDigitalValue">false</p>
+    </div>
+    <div class="controlGroup">
+        <button id="sendAnalogButton" class="btn">Send Analog</button>
+        <p id="currentAnalogValue">32767</p>
+        <input type="range" min="0" max="65535" value="32767" id="analogSlider">
+    </div>
+    <div class="controlGroup">
+        <button id="sendSerialButton" class="btn">Send Serial</button>
+        <input type="text" name="Data" id="currentSerialValue" placeholder="Placeholder">
+    </div>
+  </div>
+</body>
+</html>

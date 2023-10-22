@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #121212;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  color: #fff;
+}
+
+#offlineMessage {
+  font-size: 2rem;
+}
