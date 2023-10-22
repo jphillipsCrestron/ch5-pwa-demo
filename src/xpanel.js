@@ -4,20 +4,17 @@ const configuration = {
   ipId: '0x03'
 };
 
+let connected = false;
+
 // Websocket connection event
 window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.CONNECT_WS, ({ detail }) => {
   console.log(`WebXPanel websocket connection: ${JSON.stringify(detail)}`);
-  if (window.location.pathname === "/ch5-pwa-demo/offline.html") {
-    window.location.href = './index.html';
-  }
 });
 
 // CIP connection event
 window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.CONNECT_CIP, ({ detail }) => {
   console.log(`WebXPanel CIP connection: ${JSON.stringify(detail)}`);
-  if (window.location.pathname === "/ch5-pwa-demo/offline.html") {
-    window.location.href = './index.html';
-  }
+  connected = true;
 });
 
 // If XPanel authentication fails this will fire
@@ -34,25 +31,19 @@ window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.NOT_AUTHORIZ
 // Websocket connection failed event
 window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.ERROR_WS, ({ detail }) => {
   console.log(`WebXPanel connection failed: ${JSON.stringify(detail)}`);
-  if (window.location.pathname != '/ch5-pwa-demo/offline.html') {
-    window.location.href = './offline.html';
-  }
+  connected = false;
 });
 
 // Websocket lost connection event
 window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.DISCONNECT_WS, ({ detail }) => {
   console.log(`WebXPanel WS connection lost: ${JSON.stringify(detail)}`);
-  if (window.location.pathname != '/ch5-pwa-demo/offline.html') {
-    window.location.href = './offline.html';
-  }
+  connected = false;
 });
 
 // CIP lost connection event
 window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.DISCONNECT_CIP, ({ detail }) => {
   console.log(`WebXPanel CIP connection lost: ${JSON.stringify(detail)}`);
-  if (window.location.pathname != '/ch5-pwa-demo/offline.html') {
-    window.location.href = './offline.html';
-  }
+  connected = false;
 });
 
 // Activate WebXPanel connection if running in a browser
@@ -62,3 +53,21 @@ if(window.WebXPanel.isActive) {
   console.log(`WebXPanel build date: ${window.WebXPanel.getBuildDate()}`);
   window.WebXPanel.default.initialize(configuration);
 }
+
+function checkOnlineStatus() {
+  console.log('Checking online status...');
+  if (window.navigator.onLine && connected) {
+    console.log('We are connected');
+    if (window.location.pathname === "/ch5-pwa-demo/offline.html") {
+      console.log('Redirecting to index');
+      window.location.href = './index.html';
+    }
+  } else {
+    console.log('We are not connected');
+    if (window.location.pathname === "/ch5-pwa-demo/index.html") {
+      console.log('Redirecting to offline');
+      window.location.href = './offline.html';
+    }
+  }
+}
+setInterval(checkOnlineStatus, 5000);
