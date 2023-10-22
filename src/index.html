@@ -4,18 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    /**
-     * Listen for the browser offline event. This event only fires if the 
-     * browser/app loses connection to the network, not if the browser/app 
-     * has lost connection to the control system. That functionality is 
-     * in the xpanel.js file.
-     */
-    window.addEventListener('offline', function() {
-      window.location.href = './offline.html';
-    });
-  </script>
-
   <!-- 
     We need to link the manifest.json to the entry point HTML.
     manifest.json requirements for PWA functionality are found here:
