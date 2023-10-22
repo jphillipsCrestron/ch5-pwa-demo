@@ -17,16 +17,16 @@
   ],
   "screenshots": [
     {
-			"src": "./assets/screenshot_narrow.jpg",
-			"type": "image/jpeg",
-			"sizes": "540x720",
-			"form_factor": "narrow"
-		},
-		{
-			"src": "./assets/screenshot_wide.jpg",
-			"type": "image/jpeg",
-			"sizes": "1024x593",
-			"form_factor": "wide"
-		}
+      "src": "./assets/screenshot_narrow.jpg",
+      "type": "image/jpeg",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./assets/screenshot_wide.jpg",
+      "type": "image/jpeg",
+      "sizes": "1024x593",
+      "form_factor": "wide"
+    }
 	]
 }
