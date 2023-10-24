@@ -1,6 +1,6 @@
 # CH5 Progressive Web App demo
 
-This project is a minimal demonstration of turning a CH5 WebXPanel into a progressive web app that can be installed on Desktop, iOS, and Android devices to provide a native app experience for an HTML5 project.
+This project is a minimal demonstration of turning a CH5 WebXPanel into a progressive web app that can be installed on Desktop, iOS, and Android devices to provide a native app experience for a CH5 project.
 
 ## Requirements
   * The server that serves the XPanel (Crestron processor or third-party server) must serve the PWA over HTTPS with a valid (not self-signed) certificate. Devices that intend to connect to the XPanel must trust the certificate authority that signed the certificate presented by the server, otherwise browser security will prevent installation of the XPanel as an app.
