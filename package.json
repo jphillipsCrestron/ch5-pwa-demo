@@ -4,7 +4,8 @@
   "description": "CH5 PWA Demo",
   "main": "index.js",
   "scripts": {
-    "archive": "ch5-cli archive -p ch5-pwa-demo -d src -o dist"
+    "archive": "ch5-cli archive -p ch5-pwa-demo -d src -o dist",
+    "deploy": "ch5-cli deploy -H 0.0.0.0 -p -t web dist/ch5-pwa-demo.ch5z"
   },
   "keywords": ["CH5", "Crestron", "XPanel", "WebXPanel", "CrComLib"],
   "author": "Justin Phillips",
