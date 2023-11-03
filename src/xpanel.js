@@ -4,55 +4,59 @@ const configuration = {
   ipId: '0x03'
 };
 
+// Get WebXPanel objects
+const { WebXPanel, isActive, WebXPanelConfigParams, WebXPanelEvents } = window.WebXPanel.getWebXPanel(!window.WebXPanel.runsInContainerApp());
+
+// Activate WebXPanel connection if running in a browser
+if(isActive) {
+  WebXPanelConfigParams.host = "192.168.1.223";
+  WebXPanelConfigParams.ipId = "0x03";
+
+  console.log("Initializing WebXPanel with config: " + JSON.stringify(WebXPanelConfigParams));
+  WebXPanel.initialize(WebXPanelConfigParams);
+}
+
 let connected = false;
 
 // Websocket connection event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.CONNECT_WS, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.CONNECT_WS, ({ detail }) => {
   console.log(`WebXPanel websocket connection: ${JSON.stringify(detail)}`);
 });
 
 // CIP connection event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.CONNECT_CIP, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.CONNECT_CIP, ({ detail }) => {
   console.log(`WebXPanel CIP connection: ${JSON.stringify(detail)}`);
   connected = true;
 });
 
 // If XPanel authentication fails this will fire
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.AUTHENTICATION_FAILED, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.AUTHENTICATION_FAILED, ({ detail }) => {
   console.log(`WebXPanel authentication: ${JSON.stringify(detail)}`);
 });
 
 // Websocket token request event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.NOT_AUTHORIZED, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.NOT_AUTHORIZED, ({ detail }) => {
   console.log(`WebXPanel token request: ${JSON.stringify(detail)}`);
   window.location = detail.redirectTo;
 });
 
 // Websocket connection failed event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.ERROR_WS, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.ERROR_WS, ({ detail }) => {
   console.log(`WebXPanel connection failed: ${JSON.stringify(detail)}`);
   connected = false;
 });
 
 // Websocket lost connection event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.DISCONNECT_WS, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.DISCONNECT_WS, ({ detail }) => {
   console.log(`WebXPanel WS connection lost: ${JSON.stringify(detail)}`);
   connected = false;
 });
 
 // CIP lost connection event
-window.WebXPanel.default.addEventListener(WebXPanel.WebXPanelEvents.DISCONNECT_CIP, ({ detail }) => {
+window.addEventListener(WebXPanelEvents.DISCONNECT_CIP, ({ detail }) => {
   console.log(`WebXPanel CIP connection lost: ${JSON.stringify(detail)}`);
   connected = false;
 });
-
-// Activate WebXPanel connection if running in a browser
-if(window.WebXPanel.isActive) {
-  console.log("Initializing WebXPanel");
-  console.log(`WebXPanel version: ${window.WebXPanel.getVersion()}`); 
-  console.log(`WebXPanel build date: ${window.WebXPanel.getBuildDate()}`);
-  window.WebXPanel.default.initialize(configuration);
-}
 
 function checkOnlineStatus() {
   console.log('Checking online status...');
@@ -70,4 +74,5 @@ function checkOnlineStatus() {
     }
   }
 }
+
 setInterval(checkOnlineStatus, 5000);
