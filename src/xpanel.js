@@ -1,15 +1,9 @@
-// The XPanel connection configuration is just a simple JavaScript object:
-const configuration = { 
-  host: '192.168.1.223',
-  ipId: '0x03'
-};
-
 // Get WebXPanel objects
 const { WebXPanel, isActive, WebXPanelConfigParams, WebXPanelEvents } = window.WebXPanel.getWebXPanel(!window.WebXPanel.runsInContainerApp());
 
 // Activate WebXPanel connection if running in a browser
 if(isActive) {
-  WebXPanelConfigParams.host = "192.168.1.223";
+  WebXPanelConfigParams.host = "0.0.0.0";
   WebXPanelConfigParams.ipId = "0x03";
 
   console.log("Initializing WebXPanel with config: " + JSON.stringify(WebXPanelConfigParams));
